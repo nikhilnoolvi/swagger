@@ -3,8 +3,7 @@ name: Deploy Swagger UI
 on:
   workflow_run:
     workflows: ["Backend CI"]
-    types:
-      - completed
+    types: [completed]
 
 permissions:
   contents: read
@@ -15,20 +14,10 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Setup Pages
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: pages
-          run-id: ${{ github.event.workflow_run.id }}
-
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
