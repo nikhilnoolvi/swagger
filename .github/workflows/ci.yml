@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: backend
 
     steps:
       - name: Checkout code
@@ -21,22 +18,26 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install backend dependencies
         run: npm install
+        working-directory: backend
 
       - name: Reinstall ESLint (fix Windows permission issue)
         run: npm rebuild eslint --force
+        working-directory: backend
 
       - name: Run ESLint
         run: npm run lint
+        working-directory: backend
 
       - name: Generate Swagger JSON
         run: npm run swagger:generate
+        working-directory: backend
 
       - name: Disable Jekyll
-        run: touch public/.nojekyll
+        run: touch backend/public/.nojekyll
 
       - name: Upload static site artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: backend/public   # ✅ FIXED (correct location)
