@@ -8,7 +8,8 @@
     "swagger:generate": "node generate-swagger.js"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "swagger-jsdoc": "^6.2.8"
   },
   "devDependencies": {
     "eslint": "^8.57.1"
