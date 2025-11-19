@@ -1,21 +1,20 @@
-module.exports = {
+const swaggerJsdoc = require("swagger-jsdoc");
+
+const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "MERN CRUD API",
+      title: "My API Documentation",
       version: "1.0.0",
-      description: "API documentation for the MERN CRUD App",
-      contact: {
-        name: "Nikhil",
-        email: "noolvi@example.com",
-      },
+      description: "Swagger API docs deployed on GitHub Pages"
     },
     servers: [
-      {
-        url: "http://localhost:8005",
-        description: "Development server",
-      },
-    ],
+      { url: "http://localhost:5000" }
+    ]
   },
-  apis: ["./backend/routes/*.js"] // update path based on your folder
+  apis: ["./index.js"] // API annotations inside index.js
 };
+
+const swaggerSpec = swaggerJsdoc(options);
+
+module.exports = swaggerSpec;

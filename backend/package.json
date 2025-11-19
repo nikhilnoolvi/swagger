@@ -1,31 +1,28 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Express backend with Swagger deployed to GitHub Pages",
   "main": "index.js",
+
   "homepage": "https://nikhilnoolvi.github.io/swagger",
 
   "scripts": {
-    "test": "cross-env NODE_ENV=test npx jest --runInBand",
-    "generate:swagger": "node generate-swagger.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "start": "node index.js",
+    "lint": "eslint .",
+    "test": "echo \"No tests yet\"",
+    "generate-swagger": "node swagger/generate-swagger.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+
   "dependencies": {
+    "express": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0",
     "mongoose": "^8.19.3",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-dist": "^5.30.2",
     "swagger-ui-express": "^5.0.1"
   },
+
   "devDependencies": {
-    "cross-env": "^10.1.0",
-    "jest": "^30.2.0",
-    "supertest": "^7.1.4"
+    "eslint": "^8.56.0"
   }
 }

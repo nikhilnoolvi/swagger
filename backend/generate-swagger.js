@@ -1,16 +1,14 @@
-const swaggerJSDoc = require("swagger-jsdoc");
 const fs = require("fs");
 const path = require("path");
+const swaggerSpec = require("./swagger");
 
-// Path to your swagger.js file
-const options = require("./backend/swagger");
+const outputDir = path.join(__dirname, "public");
+const outputFile = path.join(outputDir, "swagger-output.json");
 
-const swaggerSpec = swaggerJSDoc(options);
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir, { recursive: true });
+}
 
-// Write swagger.json to project root
-fs.writeFileSync(
-  path.join(__dirname, "swagger.json"),
-  JSON.stringify(swaggerSpec, null, 2)
-);
+fs.writeFileSync(outputFile, JSON.stringify(swaggerSpec, null, 2));
 
-console.log("swagger.json generated successfully!");
+console.log("✔ Swagger JSON generated successfully!");
