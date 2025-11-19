@@ -3,7 +3,7 @@ name: Deploy Swagger UI
 on:
   workflow_run:
     workflows: ["Backend CI"]
-    types: 
+    types:
       - completed
 
 permissions:
@@ -15,6 +15,9 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Setup Pages
@@ -26,4 +29,5 @@ jobs:
           name: github-pages
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
