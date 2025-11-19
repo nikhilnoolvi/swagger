@@ -3,7 +3,7 @@ name: Deploy Swagger UI
 on:
   workflow_run:
     workflows: ["Backend CI"]
-    types:
+    types: 
       - completed
 
 permissions:
