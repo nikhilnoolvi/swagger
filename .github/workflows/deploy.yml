@@ -3,9 +3,11 @@ name: Deploy Swagger UI
 on:
   workflow_run:
     workflows: ["Backend CI"]
-    types: [completed]
+    types:
+      - completed
 
 permissions:
+  contents: read
   pages: write
   id-token: write
 
@@ -18,7 +20,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Download artifact
+      - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
           name: github-pages
