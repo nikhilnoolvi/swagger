@@ -6,7 +6,6 @@ on:
     types: [completed]
 
 permissions:
-  contents: read
   pages: write
   id-token: write
 
@@ -16,8 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup GitHub Pages
+      - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Download artifact from Backend CI
+        uses: actions/download-pages-artifact@v3
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
