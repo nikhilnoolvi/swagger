@@ -39,4 +39,4 @@ jobs:
       - name: Upload static site artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: backend/public
+          path: public        # ✅ FIXED (Correct path inside backend)
