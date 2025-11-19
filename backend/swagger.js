@@ -1,3 +1,4 @@
+const path = require("path");
 const swaggerJsdoc = require("swagger-jsdoc");
 
 const options = {
@@ -12,7 +13,13 @@ const options = {
       { url: "http://localhost:5000" }
     ]
   },
-  apis: ["./index.js"] // API annotations inside index.js
+
+  // IMPORTANT: Scan backend/server.js, backend/app.js, and all routes
+  apis: [
+    path.join(__dirname, "server.js"),
+    path.join(__dirname, "app.js"),
+    path.join(__dirname, "routes/**/*.js")
+  ]
 };
 
 const swaggerSpec = swaggerJsdoc(options);
