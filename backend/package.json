@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://nikhilnoolvi.github.io/swagger",
+
   "scripts": {
     "test": "cross-env NODE_ENV=test npx jest --runInBand",
-    "generate:swagger": "node generate-swagger.js"
+    "generate:swagger": "node generate-swagger.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
